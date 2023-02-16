@@ -27,6 +27,7 @@ class CrawlAssetRepository {
   async insert(asset: CrawlAsset): Promise<void> {
     try {
       const result = await this.repo.insert(asset);
+      asset.id = result.identifiers[0].id;
     } catch (e) {
       console.error('Error saving asset', e);
       throw e;
